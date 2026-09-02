@@ -1,6 +1,6 @@
 # Prática 1: Segurança e Controle de Acesso
 
-**Estudante:** Evelin  Silva  
+**Discente:** Evelin  Silva  
 **Matrícula:** 20241038060001
 
 ## Execução: via Docker Compose
@@ -16,7 +16,7 @@ docker compose logs -f
 docker compose down
 ```
 
-## Contas Criadas
+## Contas Criadas durante a prática
 
 | Nome | E-mail | Papel | Regra de Senha |
 |---|---|---|---|
