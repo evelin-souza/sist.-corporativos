@@ -28,3 +28,8 @@ docker compose down
 | Nome | E-mail | Papel |
 |---|---|---|
 | Carla | carla@empresa.com | solicitante | 
+
+## Explicação Token e Papel
+
+O status `401 Unauthorized` é retornado quando o usuário possui a identidade não comprovada, nesse caso, a API não consegue identificar o mesmo devido: ausência, erro ou expiração do token JWT. 
+Já o status `403 Forbidden` ocorre quando o usuário está devidamente autenticado, com sua identidade confirmada, mas o seu perfil (também conhecido como `papel`) não possui a autorização necessária para acessar aquele recurso específico.
