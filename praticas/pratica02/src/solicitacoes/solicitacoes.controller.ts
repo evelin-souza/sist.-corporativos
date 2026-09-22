@@ -6,7 +6,6 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { CriarSolicitacaoDto } from './dto/criar-solicitacao.dto';
 import { FiltrarSolicitacoesDto } from './dto/filtrar-solicitacoes.dto';
 import { AprovarSolicitacaoDto } from './dto/aprovar-solicitacao.dto';
-import { RejeitarSolicitacaoDto } from './dto/rejeitar-solicitacao.dto';
 
 type RequisicaoAutenticada = {
   user: { id: number; papel: string };
@@ -29,8 +28,7 @@ export class SolicitacoesController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  buscarPorId(
-    @Param('id', ParseIntPipe) id: number) {
+  buscarPorId(@Param('id', ParseIntPipe) id: number) {
     return this.solicitacoesService.buscarPorId(id);
   }
 
@@ -44,16 +42,5 @@ export class SolicitacoesController {
     @Req() request: RequisicaoAutenticada,
   ) {
     return this.solicitacoesService.aprovar(id, dto.versao, request.user.id);
-  }
-
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('gestor')
-  @Patch(':id/rejeitar')
-  rejeitar(
-    @Param('id', ParseIntPipe) id:number,
-    @Body() dto: RejeitarSolicitacaoDto,
-    @Req() request: RequisicaoAutenticada,
-  ) {
-    return this.solicitacoesService.rejeitar(id, dto.versao, dto.justificativa, request.user.id);
   }
 }
