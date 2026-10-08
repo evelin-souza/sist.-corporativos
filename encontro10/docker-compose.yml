@@ -1,5 +1,9 @@
 services:
   api:
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    environment:
+      HOME: /tmp
+      npm_config_cache: /tmp/.npm
     build: .
     ports: 
       - "3000:3000"
@@ -13,7 +17,7 @@ services:
   db:
     image: postgres:17-alpine
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -25,6 +29,15 @@ services:
       retries: 10
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  mongo:
+    image: mongo:7.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db 
 
 volumes:
   node_modules:
