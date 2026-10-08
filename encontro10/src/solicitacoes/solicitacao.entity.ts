@@ -27,6 +27,12 @@ export class Solicitacao {
   @Column({ type: 'varchar', length: 20, default: 'pendente' })
   status: StatusSolicitacao;
 
+  @Column({ name: 'valor_estimado_centavos', type: 'integer' })
+  valorEstimadoCentavos: number;
+
+@Column({ name: 'centro_custo', type: 'varchar', length: 30 })
+centroCusto: string;
+
   @VersionColumn({ name: 'versao' })
   versao: number;
 
